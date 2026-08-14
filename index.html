@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productores de Marchigüe | Mercado Local</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="Conoce a los productores locales de Marchigüe. Frutas, verduras, huevos, miel y más directo del campo a tu mesa." />
+    <meta name="keywords" content="Marchigüe, productores locales, mercado local, frutas, verduras, campo chileno" />
+    
+    <!-- Fuentes e Iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <style>
+      /* ===== ESTILOS COMPLETOS ===== */
+      :root {
+        --verde-campo: #2d5a27;
+        --verde-claro: #4caf50;
+        --verde-oscuro: #1a3a16;
+        --mostaza: #d4a017;
+        --texto: #1e293b;
+        --blanco: #ffffff;
+        --gris: #64748b;
+        --gris-claro: #f1f5f9;
+        --sombra: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --border-radius: 16px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      }
+
+      body {
+        background: #f8fafc;
+        color: var(--texto);
+        line-height: 1.6;
+      }
+
+      /* ===== HEADER ===== */
+      .hero-marchigue {
+        background: linear-gradient(135deg, var(--verde-campo) 0%, #1a3a16 100%);
+        color: var(--blanco);
+        text-align: center;
+        padding: 5rem 1rem 4rem 1rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-marchigue::before {
+        content: '🌾';
+        position: absolute;
+        font-size: 12rem;
+        opacity: 0.06;
+        bottom: -2rem;
+        right: -2rem;
+        transform: rotate(-15deg);
+        pointer-events: none;
+      }
+
+      .hero-marchigue::after {
+        content: '🚜';
+        position: absolute;
+        font-size: 8rem;
+        opacity: 0.05;
+        top: -1rem;
+        left: -1rem;
+        transform: rotate(20deg);
+        pointer-events: none;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: var(--mostaza);
+        color: white;
+        padding: 0.4rem 1.5rem;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-marchigue h1 {
+        font-size: 3.2rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-marchigue h1 span {
+        color: #fcd34d;
+      }
+
+      .hero-marchigue p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto 2rem auto;
+        opacity: 0.9;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-stats-marchigue {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-stats-marchigue span {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .hero-stats-marchigue i {
+        color: #fcd34d;
+      }
+
+      /* ===== FILTROS ===== */
+      .filtros-section {
+        max-width: 1200px;
+        margin: -2rem auto 2rem auto;
+        padding: 0 1rem;
+        position: relative;
+        z-index: 10;
+      }
+
+      .filtros-container {
+        background: var(--blanco);
+        border-radius: var(--border-radius);
+        padding: 1.2rem 1.8rem;
+        box-shadow: var(--sombra);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        justify-content: space-between;
+      }
+
+      .filtros-container .filtro-label {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--gris);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .filtros-btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .filtro-btn {
+        padding: 0.4rem 1.2rem;
+        border-radius: 50px;
+        border: 2px solid #e2e8f0;
+        background: transparent;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: var(--gris);
+        font-family: inherit;
+      }
+
+      .filtro-btn:hover {
+        border-color: var(--verde-claro);
+        color: var(--texto);
+      }
+
+      .filtro-btn.active {
+        background: var(--verde-campo);
+        border-color: var(--verde-campo);
+        color: white;
+      }
+
+      .filtro-busqueda {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--gris-claro);
+        padding: 0.3rem 0.3rem 0.3rem 1rem;
+        border-radius: 50px;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      .filtro-busqueda:focus-within {
+        border-color: var(--verde-claro);
+        background: white;
+      }
+
+      .filtro-busqueda input {
+        border: none;
+        background: transparent;
+        padding: 0.4rem 0.5rem;
+        font-size: 0.9rem;
+        outline: none;
+        width: 160px;
+        font-family: inherit;
+      }
+
+      .filtro-busqueda input::placeholder {
+        color: #94a3b8;
+      }
+
+      .filtro-busqueda button {
+        background: var(--verde-claro);
+        border: none;
+        color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .filtro-busqueda button:hover {
+        background: var(--verde-campo);
+      }
+
+      /* ===== CONTADOR ===== */
+      .contador-productores {
+        max-width: 1200px;
+        margin: 0 auto 1.5rem auto;
+        padding: 0 1rem;
+        font-size: 0.95rem;
+        color: var(--gris);
+      }
+
+      .contador-productores strong {
+        color: var(--texto);
+        font-size: 1.1rem;
+      }
+
+      /* ===== GRID DE PRODUCTORES ===== */
+      .productores-grid {
+        max-width: 1200px;
+        margin: 0 auto 3rem auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 1.8rem;
+      }
+
+      /* ===== TARJETA DE PRODUCTOR ===== */
+      .productor-card {
+        background: var(--blanco);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--sombra);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 2px solid transparent;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .productor-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        border-color: var(--verde-claro);
+      }
+
+      .productor-header {
+        padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        position: relative;
+      }
+
+      .productor-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--verde-campo), var(--verde-claro));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        flex-shrink: 0;
+      }
+
+      .productor-info-header {
+        flex: 1;
+      }
+
+      .productor-info-header h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--texto);
+        line-height: 1.2;
+      }
+
+      .productor-info-header .productor-rubro {
+        font-size: 0.8rem;
+        color: var(--gris);
+        background: var(--gris-claro);
+        padding: 0.1rem 0.8rem;
+        border-radius: 50px;
+        display: inline-block;
+        margin-top: 0.2rem;
+      }
+
+      .productor-ubicacion {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.85rem;
+        color: var(--gris);
+        margin-top: 0.3rem;
+      }
+
+      .productor-ubicacion i {
+        color: var(--mostaza);
+        font-size: 0.9rem;
+      }
+
+      .productor-body {
+        padding: 0 1.5rem 1rem 1.5rem;
+        flex: 1;
+      }
+
+      .productor-body .productor-desc {
+        font-size: 0.9rem;
+        color: var(--gris);
+        margin-bottom: 0.8rem;
+        line-height: 1.6;
+      }
+
+      /* ===== PRODUCTOS DEL PRODUCTOR ===== */
+      .productos-tag {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin: 0.5rem 0 0.8rem 0;
+      }
+
+      .producto-tag {
+        background: #dcfce7;
+        color: #166534;
+        padding: 0.2rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+
+      .producto-tag i {
+        font-size: 0.7rem;
+      }
+
+      /* ===== FOOTER DE LA TARJETA ===== */
+      .productor-footer {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+
+      .productor-footer .productor-telefono {
+        font-size: 0.85rem;
+        color: var(--gris);
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .productor-footer .productor-telefono i {
+        color: var(--verde-claro);
+      }
+
+      .btn-wa-productor {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #25d366;
+        color: white;
+        padding: 0.5rem 1.2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+      }
+
+      .btn-wa-productor:hover {
+        background: #1ebe5a;
+        transform: scale(1.04);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      }
+
+      /* ===== NO RESULTS ===== */
+      .no-results-marchigue {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 4rem 2rem;
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--sombra);
+      }
+
+      .no-results-marchigue i {
+        font-size: 4rem;
+        color: #cbd5e1;
+        margin-bottom: 1rem;
+      }
+
+      .no-results-marchigue h3 {
+        font-size: 1.3rem;
+        color: var(--texto);
+        margin-bottom: 0.3rem;
+      }
+
+      .no-results-marchigue p {
+        color: var(--gris);
+      }
+
+      /* ===== FOOTER ===== */
+      .footer-marchigue {
+        background: var(--verde-oscuro);
+        color: #cbd5e1;
+        padding: 3rem 1rem 2rem 1rem;
+        border-top: 4px solid var(--mostaza);
+      }
+
+      .footer-marchigue-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-marchigue h3 {
+        color: white;
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-marchigue p {
+        font-size: 0.9rem;
+        color: #94a3b8;
+        line-height: 1.7;
+      }
+
+      .footer-marchigue ul {
+        list-style: none;
+        font-size: 0.9rem;
+      }
+
+      .footer-marchigue ul li {
+        padding: 0.3rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .footer-marchigue ul li i {
+        color: var(--mostaza);
+      }
+
+      .footer-marchigue-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        font-size: 0.85rem;
+        color: #64748b;
+      }
+
+      .footer-marchigue .footer-social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .footer-marchigue .footer-social a {
+        color: #94a3b8;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+      }
+
+      .footer-marchigue .footer-social a:hover {
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .hero-marchigue h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero-marchigue p {
+          font-size: 1rem;
+        }
+
+        .hero-stats-marchigue {
+          gap: 0.8rem;
+        }
+
+        .hero-stats-marchigue span {
+          font-size: 0.8rem;
+          padding: 0.3rem 1rem;
+        }
+
+        .filtros-container {
+          padding: 1rem;
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .filtros-btns {
+          justify-content: center;
+        }
+
+        .filtro-busqueda {
+          width: 100%;
+        }
+
+        .filtro-busqueda input {
+          width: 100%;
+        }
+
+        .productores-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .productor-footer {
+          flex-direction: column;
+          align-items: stretch;
+          text-align: center;
+        }
+
+        .productor-footer .productor-telefono {
+          justify-content: center;
+        }
+
+        .btn-wa-productor {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-marchigue h1 {
+          font-size: 1.8rem;
+        }
+
+        .hero-marchigue {
+          padding: 3rem 0.8rem 2.5rem 0.8rem;
+        }
+
+        .hero-badge {
+          font-size: 0.7rem;
+          padding: 0.3rem 1rem;
+        }
+
+        .productor-header {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .productor-avatar {
+          width: 50px;
+          height: 50px;
+          font-size: 1.6rem;
+        }
+
+        .productor-info-header h3 {
+          font-size: 1.1rem;
+        }
+
+        .productor-ubicacion {
+          justify-content: center;
+        }
+
+        .productos-tag {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="hero-marchigue">
+      <span class="hero-badge">🌾 Mercado Local</span>
+      <h1>Productores de <span>Marchigüe</span></h1>
+      <p>
+        Conoce a los productores locales que cultivan con pasión y tradición.
+        Frutas, verduras, huevos, flores y más, directo del campo a tu mesa.
+      </p>
+      <div class="hero-stats-marchigue">
+        <span><i class="fas fa-user"></i> 16 Productores</span>
+        <span><i class="fas fa-seedling"></i> Productos Frescos</span>
+        <span><i class="fas fa-truck"></i> Retiro en Predio</span>
+      </div>
+    </header>
+
+    <!-- ===== FILTROS ===== -->
+    <section class="filtros-section">
+      <div class="filtros-container">
+        <div class="filtro-label">
+          <i class="fas fa-filter"></i> Filtrar por:
+        </div>
+        <div class="filtros-btns" id="filtrosBtns">
+          <button class="filtro-btn active" data-filtro="todos">🌾 Todos</button>
+          <button class="filtro-btn" data-filtro="frutas">🍎 Frutas</button>
+          <button class="filtro-btn" data-filtro="verduras">🥬 Verduras</button>
+          <button class="filtro-btn" data-filtro="huevos">🥚 Huevos</button>
+          <button class="filtro-btn" data-filtro="flores">🌸 Flores</button>
+          <button class="filtro-btn" data-filtro="otros">🌿 Otros</button>
+        </div>
+        <div class="filtro-busqueda">
+          <input type="text" id="buscarProductor" placeholder="Buscar productor..." />
+          <button id="btnBuscar"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTADOR ===== -->
+    <div class="contador-productores">
+      Mostrando <strong id="contadorMostrados">16</strong> de <strong id="contadorTotal">16</strong> productores
+    </div>
+
+    <!-- ===== GRID DE PRODUCTORES ===== -->
+    <section class="productores-grid" id="productoresGrid">
+      <!-- Los productores se renderizan con JavaScript -->
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer-marchigue">
+      <div class="footer-marchigue-content">
+        <div>
+          <h3>🌾 Marchigüe Productores</h3>
+          <p>
+            Un portal para conectar a la comunidad con los productores locales
+            de la comuna de Marchigüe. Apoyemos lo nuestro.
+          </p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div>
+          <h3>📋 Enlaces</h3>
+          <ul>
+            <li><a href="#" style="color: #94a3b8; text-decoration: none;">Ver todos los productores</a></li>
+            <li><a href="#" style="color: #94a3b8; text-decoration: none;">¿Cómo comprar?</a></li>
+            <li><a href="#" style="color: #94a3b8; text-decoration: none;">Consejos de temporada</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>📍 Marchigüe</h3>
+          <ul>
+            <li><i class="fas fa-map-pin"></i> Comuna de Marchigüe</li>
+            <li><i class="fas fa-phone"></i> +56 9 2228 9073</li>
+            <li><i class="fas fa-envelope"></i> productores@marchigue.cl</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-marchigue-bottom">
+        <p>&copy; 2026 Productores de Marchigüe. Todos los derechos reservados.</p>
+        <p><small>Apoyando el comercio local y la agricultura familiar.</small></p>
+      </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      // ============================================================
+      // DATOS DE LOS PRODUCTORES DE MARCHIGÜE (DESDE EL EXCEL)
+      // ============================================================
+      const productores = [
+        {
+          id: 1,
+          nombre: "María Gabriela Durán Vásquez",
+          rubro: "Avicultora",
+          avatar: "🥚",
+          ubicacion: "Marchigüe",
+          descripcion: "Productora de huevos frescos y deshidratados. Calidad garantizada desde el campo a tu mesa.",
+          productos: ["Huevos", "Deshidratados"],
+          categoria: "huevos",
+          telefono: "56981938089"
+        },
+        {
+          id: 2,
+          nombre: "Edelmira Guajardo Silva",
+          rubro: "Floricultora",
+          avatar: "🌸",
+          ubicacion: "La Patagua",
+          descripcion: "Cultivadora de flores y plantas ornamentales. Color y belleza para alegrar tu hogar.",
+          productos: ["Flores", "Plantas ornamentales"],
+          categoria: "flores",
+          telefono: "56947096630"
+        },
+        {
+          id: 3,
+          nombre: "María Elisa Rojas Gutiérrez",
+          rubro: "Horticultora",
+          avatar: "🥬",
+          ubicacion: "La Pitra",
+          descripcion: "Productora de huevos y hortalizas variadas. Cultivos frescos y de calidad.",
+          productos: ["Huevos", "Hortalizas variadas"],
+          categoria: "huevos",
+          telefono: "56985996466"
+        },
+        {
+          id: 4,
+          nombre: "Daniela Isabel Sarmiento Rivero",
+          rubro: "Floricultora",
+          avatar: "🌺",
+          ubicacion: "El Chequén",
+          descripcion: "Especialista en flores y plantas ornamentales. Variedad y calidad en cada cultivo.",
+          productos: ["Flores", "Plantas ornamentales"],
+          categoria: "flores",
+          telefono: "56997942936"
+        },
+        {
+          id: 5,
+          nombre: "Julieta del Carmen Zúñiga Pérez",
+          rubro: "Fruticultora",
+          avatar: "🫐",
+          ubicacion: "Lo Marchant",
+          descripcion: "Productora de arándanos, licores artesanales y aceitunas. Sabores únicos de la zona.",
+          productos: ["Arándanos", "Licores", "Aceitunas"],
+          categoria: "frutas",
+          telefono: "56997217206"
+        },
+        {
+          id: 6,
+          nombre: "María Elena Vargas Quinteros",
+          rubro: "Horticultora",
+          avatar: "🥕",
+          ubicacion: "La Quebrada",
+          descripcion: "Cultivos de hortalizas variadas. Productos frescos y de temporada.",
+          productos: ["Hortalizas variadas"],
+          categoria: "verduras",
+          telefono: "56983379240"
+        },
+        {
+          id: 7,
+          nombre: "Oscar Fabián Vargas Vargas",
+          rubro: "Horticultor",
+          avatar: "🌽",
+          ubicacion: "La Quebrada",
+          descripcion: "Productor de hortalizas variadas. Cultivos tradicionales de la zona.",
+          productos: ["Hortalizas variadas"],
+          categoria: "verduras",
+          telefono: "56983870699"
+        },
+        {
+          id: 8,
+          nombre: "Sissi Andrea Vargas Pérez",
+          rubro: "Floricultora",
+          avatar: "🌿",
+          ubicacion: "San Miguel de Viluco",
+          descripcion: "Especialista en plantas ornamentales acuáticas y lechugas hidropónicas. Innovación en cultivos.",
+          productos: ["Plantas acuáticas", "Lechugas hidropónicas"],
+          categoria: "flores",
+          telefono: "56950164743"
+        },
+        {
+          id: 9,
+          nombre: "Silvia del Carmen Pino Gálvez",
+          rubro: "Artesana Textil",
+          avatar: "🧶",
+          ubicacion: "Rda. Alcones",
+          descripcion: "Tejidos en lana ovina, telar y mantas. Artesanía tradicional de la zona.",
+          productos: ["Tejidos lana", "Mantas", "Telar"],
+          categoria: "otros",
+          telefono: "56999566700"
+        },
+        {
+          id: 10,
+          nombre: "Sofía del Carmen González Lorca",
+          rubro: "Floricultora",
+          avatar: "🌻",
+          ubicacion: "Rda. Alcones",
+          descripcion: "Cultivo de flores ornamentales y hortalizas. Belleza y sabor en un solo lugar.",
+          productos: ["Flores ornamentales", "Hortalizas"],
+          categoria: "flores",
+          telefono: "56983637402"
+        },
+        {
+          id: 11,
+          nombre: "Diego del Carmen Rojas Soto",
+          rubro: "Horticultor",
+          avatar: "🍅",
+          ubicacion: "Lo Marchant",
+          descripcion: "Productor de tomates y vinagre artesanal. Sabores auténticos del campo.",
+          productos: ["Tomates", "Vinagre artesanal"],
+          categoria: "verduras",
+          telefono: "56995422403"
+        },
+        {
+          id: 12,
+          nombre: "Victoria de la Luz Orellana Caroca",
+          rubro: "Avicultora",
+          avatar: "🐔",
+          ubicacion: "Rda. Alcones",
+          descripcion: "Productora de huevos frescos. Calidad y tradición en cada huevo.",
+          productos: ["Huevos"],
+          categoria: "huevos",
+          telefono: "56997337243"
+        },
+        {
+          id: 14,
+          nombre: "Jaqueline del Pilar Becerra Venegas",
+          rubro: "Floricultora",
+          avatar: "💐",
+          ubicacion: "Marchigüe",
+          descripcion: "Flores de corte, hortalizas y huevos. Variedad de productos frescos.",
+          productos: ["Flores de corte", "Hortalizas", "Huevos"],
+          categoria: "flores",
+          telefono: "56932121736"
+        },
+        {
+          id: 15,
+          nombre: "Mary Luz del Carmen Castillo Rojas",
+          rubro: "Horticultora",
+          avatar: "🌾",
+          ubicacion: "San Miguel de Viluco",
+          descripcion: "Productora de hortalizas, flores, frutas y huevos. Cultivos variados de calidad.",
+          productos: ["Hortalizas", "Flores", "Frutas", "Huevos"],
+          categoria: "verduras",
+          telefono: "56996923357"
+        },
+        {
+          id: 16,
+          nombre: "Sergio Alejandro Ñúñez Garrido",
+          rubro: "Fruticultor",
+          avatar: "🍓",
+          ubicacion: "Trinidad",
+          descripcion: "Productor de frutillas, frutos secos y hortalizas. Dulzura natural en cada producto.",
+          productos: ["Frutillas", "Frutos secos", "Hortalizas"],
+          categoria: "frutas",
+          telefono: "56945333571"
+        },
+        {
+          id: 17,
+          nombre: "Mamerto del Carmen Leiva Arrue",
+          rubro: "Horticultor",
+          avatar: "🫒",
+          ubicacion: "Rda. Alcones",
+          descripcion: "Productor de hortalizas variadas, aceite de oliva y aceitunas. Tradición mediterránea en Marchigüe.",
+          productos: ["Hortalizas", "Aceite de oliva", "Aceitunas"],
+          categoria: "verduras",
+          telefono: "56996382776"
+        }
+      ];
+
+      // ============================================================
+      // RENDERIZAR PRODUCTORES
+      // ============================================================
+      const grid = document.getElementById('productoresGrid');
+      const contadorMostrados = document.getElementById('contadorMostrados');
+      const contadorTotal = document.getElementById('contadorTotal');
+      const filtrosBtns = document.querySelectorAll('.filtro-btn');
+      const buscarInput = document.getElementById('buscarProductor');
+
+      let filtroActual = 'todos';
+      let busquedaActual = '';
+
+      function renderizarProductores() {
+        const filtrados = productores.filter(p => {
+          // Filtro por categoría
+          if (filtroActual !== 'todos' && p.categoria !== filtroActual) return false;
+          // Filtro por búsqueda
+          if (busquedaActual.trim() !== '') {
+            const busq = busquedaActual.toLowerCase().trim();
+            const nombre = p.nombre.toLowerCase();
+            const productos = p.productos.join(' ').toLowerCase();
+            const rubro = p.rubro.toLowerCase();
+            const ubicacion = p.ubicacion.toLowerCase();
+            if (!nombre.includes(busq) && !productos.includes(busq) && !rubro.includes(busq) && !ubicacion.includes(busq)) {
+              return false;
+            }
+          }
+          return true;
+        });
+
+        // Actualizar contador
+        contadorMostrados.textContent = filtrados.length;
+        contadorTotal.textContent = productores.length;
+
+        if (filtrados.length === 0) {
+          grid.innerHTML = `
+            <div class="no-results-marchigue">
+              <i class="fas fa-search"></i>
+              <h3>No encontramos productores</h3>
+              <p>Prueba con otro filtro o término de búsqueda</p>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = filtrados.map(p => `
+          <article class="productor-card" data-categoria="${p.categoria}" data-id="${p.id}">
+            <div class="productor-header">
+              <div class="productor-avatar">${p.avatar}</div>
+              <div class="productor-info-header">
+                <h3>${p.nombre}</h3>
+                <span class="productor-rubro">${p.rubro}</span>
+                <div class="productor-ubicacion">
+                  <i class="fas fa-map-pin"></i> ${p.ubicacion}
+                </div>
+              </div>
+            </div>
+            <div class="productor-body">
+              <p class="productor-desc">${p.descripcion}</p>
+              <div class="productos-tag">
+                ${p.productos.map(prod => `
+                  <span class="producto-tag"><i class="fas fa-check-circle"></i> ${prod}</span>
+                `).join('')}
+              </div>
+            </div>
+            <div class="productor-footer">
+              <span class="productor-telefono">
+                <i class="fas fa-phone"></i> +${p.telefono}
+              </span>
+              <a href="https://wa.me/${p.telefono}?text=Hola%20${encodeURIComponent(p.nombre)}%2C%20vi%20tu%20perfil%20en%20el%20portal%20de%20Productores%20de%20Marchig%C3%BCe%20y%20me%20interesan%20tus%20productos" 
+                 target="_blank" 
+                 class="btn-wa-productor">
+                <i class="fab fa-whatsapp"></i> Contactar
+              </a>
+            </div>
+          </article>
+        `).join('');
+      }
+
+      // ============================================================
+      // FILTROS
+      // ============================================================
+      filtrosBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          filtrosBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          filtroActual = this.dataset.filtro;
+          renderizarProductores();
+        });
+      });
+
+      // ============================================================
+      // BÚSQUEDA
+      // ============================================================
+      buscarInput.addEventListener('input', function() {
+        busquedaActual = this.value;
+        renderizarProductores();
+      });
+
+      document.getElementById('btnBuscar').addEventListener('click', function() {
+        busquedaActual = buscarInput.value;
+        renderizarProductores();
+      });
+
+      buscarInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          busquedaActual = this.value;
+          renderizarProductores();
+        }
+      });
+
+      // ============================================================
+      // INICIALIZAR
+      // ============================================================
+      renderizarProductores();
+
+      console.log('🌾 Productores de Marchigüe - Portal Local');
+      console.log(`📊 Total de productores: ${productores.length}`);
+      console.log('📱 Conectando campo con la comunidad');
+    </script>
+  </body>
+</html>
+
+
+
